@@ -14,7 +14,7 @@ window.onload = function() {
 
     ctx = canvas.getContext('2d'); //creating context for drawing
 
-    spriteImg.src = '../images/sprite.png'; //setting sprite image
+    spriteImg.src = './images/sprite.png'; //setting sprite image
 
     spriteImg.onload = function() { //after the sprite sheet is loaded one of the sprite's states is drawn
         drawSprite();               //with drawSprite() function every 100ths of a second
