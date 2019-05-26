@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/index.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -26,7 +27,7 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h2>Canvas</h2>
+					<h1>Canvas</h1>
 					<aside class="notes">
 							Canvas is a 2D drawing API added to HTML and supported by most browsers.
 							Canvas allows you to draw anything you want directly in the web browser without the use of plugins like Flash or Java.
@@ -34,6 +35,200 @@
 					</aside>
 				</section>
 
+				<section>
+					<h2>Example of Canvas</h2>
+					<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-4">
+						const canvas = document.getElementById('canvas');
+						const ctx = canvas.getContext('2d');
+						ctx.fillStyle = "green";
+						ctx.fillRect(100,100,300,300);
+					</code></pre>
+					<canvas width="500" height="500" id="canvas-example"></canvas>
+  					<script>
+    					const canvasExample = document.getElementById('canvas-example');
+    					const ctxExample = canvasExample.getContext('2d');
+    					ctxExample.fillStyle = "green";
+    					ctxExample.fillRect(100,100,300,300);
+  					</script>
+					<aside class="notes">
+							This is an example of what some Canvas code looks like where the square is drawn by <b>context.fillRect()</b> function.
+							It's important to understand that <strong>Canvas is for drawing pixels</strong>.
+							It has no shapes or vectors. There are no objects to attach event handlers to.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Pros and Cons</h2>
+
+					<h3 class="fragment fade-up">+</h3>
+					<ol style="display: block; color: green">
+					    <li class="fragment fade-in-then-semi-out">Suited for games, charts, graphs, diagrams</li>
+					    <li class="fragment fade-in-then-semi-out">More control over the drawing</li>
+					    <li class="fragment fade-in-then-semi-out">Less memory consumption</li>
+					</ol>
+
+					<h3 class="fragment fade-up">-</h3>
+					<ol style="display: block; color: red">
+					    <li class="fragment fade-in-then-semi-out">Canvas images are not flexible</li>
+					    <li class="fragment fade-in-then-semi-out">No support for event handlers and css styling</li>
+					    <li class="fragment fade-in-then-semi-out">Need to write more code</li>
+					    <li class="fragment fade-in-then-semi-out">Slow when drawing large objects</li>
+					</ol>
+
+					<aside class="notes">
+							Let's talk about pros and cons of Canvas.<br>
+							Canvas pros are:<br>
+							1. It's a great choice for charts, graphs, dynamic diagrams, and video games;<br>
+							2. Detailed control over when and how pixels are rendered;<br>
+							3. Animation and rendering accelerate because it uses less memory.;<br>
+							Canvas cons are:<br>
+							1. Does not automatically adjust to display pixel ratio, resulting in blurry text;<br>
+							2. There is no support for event handlers and css styling (only &lt;canvas&gt; element);<br>
+							3. Increases code complexity for animations, basic configurations, etc.;<br>
+							4. Slow when drawing large objects or when managing a large canvas.
+					</aside>
+				</section>
+
+				<section data-background-color="#DDDDDD">
+					<h2>Browser Compatibility</h2>
+
+					<h3 class="desktop-compatibility"></h3>
+					<table class="compatibility-table" style="width:100%; margin-bottom:40px">
+						<tr>
+						  <th class="browser-cell chrome-cell">Chrome</th>
+						  <th class="browser-cell edge-cell">Edge</th>
+						  <th class="browser-cell firefox-cell">Firefox</th>
+						  <th class="browser-cell explorer-cell">IE</th>
+						  <th class="browser-cell opera-cell">Opera</th>
+						  <th class="browser-cell safari-cell">Safari</th>
+						</tr>
+						<tr>
+						  <td class="browser-cell">4</td>
+						  <td class="browser-cell">Yes</td>
+						  <td class="browser-cell">3.6</td>
+						  <td class="browser-cell">9</td>
+						  <td class="browser-cell">9</td>
+						  <td class="browser-cell">3.1</td>
+						</tr>
+					</table>
+
+					<h3 class="mobile-compatibility"></h3>
+					<table class="compatibility-table" style="width:100%">
+						<tr>
+						  <th class="browser-cell chrome-cell">Chrome for Android</th>
+						  <th class="browser-cell edge-cell">Edge Mobile</th>
+						  <th class="browser-cell firefox-cell">Firefox for Android</th>
+						  <th class="browser-cell opera-cell">Opera for Android</th>
+						  <th class="browser-cell safari-cell">Safari on iOS</th>
+						</tr>
+						<tr>
+						  <td class="browser-cell">Yes</td>
+						  <td class="browser-cell">Yes</td>
+						  <td class="browser-cell">Yes</td>
+						  <td class="browser-cell">10.1</td>
+						  <td class="browser-cell">3.2</td>
+						</tr>
+					</table>
+
+					<aside class="notes">
+						Before diving into workking with Canvas, let's talk about where you can use it.<br>
+						Canvas is now a stable API and most modern browsers support it to some extent.<br>
+						Even Internet Explorer supports it starting with IE 9.<br>
+						On the mobile side most smartphone platforms support it because most of them are based on WebKit.
+					</aside>
+				</section>
+
+				<section class="fallback-content">
+					<h2>Fallback content</h2>
+					<pre><code class="html" data-trim data-noescape data-line-numbers="1-3">
+						&lt;canvas id="stockGraph" width="150" height="150"&gt;
+							current stock price: $3.15 + 0.15
+						&lt;/canvas&gt;
+					</code></pre>
+
+					<pre><code class="html" data-trim data-noescape data-line-numbers="1-3">
+						&lt;canvas id="clock" width="150" height="150"&gt;
+							&lt;img src="images/clock.png" width="150" height="150" alt="clock"/&gt;
+						&lt;/canvas&gt;
+					</code></pre>
+
+					<aside class="notes">
+						Defining fallback content is very important in older browsers which don't support canvas (e.g. versions of IE earlier than 9).<br>
+						It's very simple: just insert the alternate content inside the &lt;canvas&gt; element.<br>
+						Browsers that don't support &lt;canvas&gt; will ignore the container and render the fallback content inside it and vice versa.<br>
+						For example, we could provide a text description or a static image of the dynamically rendered content.
+					</aside>
+				</section>
+
+				<section class="rendering-context">
+					<h3>Rendering context</h3>
+					<pre class="get-context"><code class="javascript" data-trim data-noescape data-line-numbers="1-2">
+						const canvas = document.getElementById('tutorial');
+						const ctx = canvas.getContext('2d');
+					</code></pre>
+
+					<h3>Checking for support</h3>
+					<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-3, 5, 7">
+						const canvas = document.getElementById('tutorial');
+						if (canvas.getContext) {
+						  const ctx = canvas.getContext('2d');
+						  // drawing code here
+						} else {
+						  // canvas-unsupported code here
+						}
+					</code></pre>
+
+					<aside class="notes">
+						The canvas element is initially blank, that's why a script first needs to access the rendering context and draw on it.<br>
+						Method called getContext(), used to obtain the rendering context, takes one parameter - the type of context.<br>
+						We will specify "2d" to get a CanvasRenderingContext2D with its methods.<br>
+						The first line in the script retrieves the canvas node in the DOM, and getContext() method gives us access to the drawing context.<br>
+						Scripts can also check for canvas support by simply testing for the presence of the getContext() method.<br>
+					</aside>
+				</section>
+
+				<section class="coordinate-system" data-background-color="#DDDDDD">
+					<h2>Coordinate System</h2>
+					<canvas id="coordinates" width="500" height="500"></canvas>
+					<script>
+						function drawCoordinates() {
+							const canvasCoordinates = document.getElementById('coordinates');
+							if (canvasCoordinates.getContext) {
+							  const ctxCoordinates = canvasCoordinates.getContext('2d');
+
+							  ctxCoordinates.beginPath();
+							  ctxCoordinates.moveTo(40,40);
+
+							  ctxCoordinates.lineTo(460,40); //x-axis with arrow
+							  ctxCoordinates.lineTo(450,30);
+							  ctxCoordinates.moveTo(460,40);
+							  ctxCoordinates.lineTo(450,50);
+
+							  ctxCoordinates.moveTo(40,40);
+
+							  ctxCoordinates.lineTo(40,460); //y-axis with arrow
+							  ctxCoordinates.lineTo(30,450);
+							  ctxCoordinates.moveTo(40,460);
+							  ctxCoordinates.lineTo(50,450);
+
+							  ctxCoordinates.stroke();
+
+							  ctxCoordinates.font = "24px serif";
+							  ctxCoordinates.fillText("0,0", 20, 30); //the origin title
+							  ctxCoordinates.fillText("x", 430, 60); //x-axis title
+							  ctxCoordinates.fillText("y", 50, 430); //y-axis title
+							}
+						}
+						drawCoordinates();
+					</script>
+
+					<aside class="notes">
+						Canvas has the origin in the upper left corner with the y axis going down, but you can change origin with transforms.<br>
+						Canvas spec defines coordinates at the upper left corner of a pixel,
+						which means that a one pixel wide vertical line starting at 5,0 will actually span half of the adjacent pixels (4.5 to 5.5).<br>
+						To address this offset your x coordinate by 0.5, that will give you a line that goes from 5.0 to 6.0 or use an even line width.
+					</aside>
+				</section>
 			</div>
 		</div>
 
@@ -53,6 +248,7 @@
 				slideNumber: true,
 				slideNumber: 'c/t',
 				autoPlayMedia: true,
+				defaultTiming: 2,
 			});
 		</script>
 	</body>
