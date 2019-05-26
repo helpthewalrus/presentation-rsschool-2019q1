@@ -62,3 +62,30 @@
 .reveal .drawing-rectangles pre {
     font-size: 0.45em;
 }
+
+.paths-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 1100px;
+}
+
+.path-wrapper pre {
+    font-size: 0.4em;
+    width: 470px;
+}
+
+.drawing-text pre {
+    font-size: 0.45em;
+}
+
+.drawing-image pre {
+    font-size: 0.35em;
+}
+
+.drawing-animation2 pre {
+    font-size: 0.4em;
+}
+.drawing-animation2 pre code {
+    max-height: 600px;
+}
