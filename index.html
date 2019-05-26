@@ -22,6 +22,7 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<script src="js/sprite.js"></script>
 	</head>
 	<body>
 		<div class="reveal">
@@ -44,16 +45,16 @@
 						ctx.fillRect(100,100,300,300);
 					</code></pre>
 					<canvas width="500" height="500" id="canvas-example"></canvas>
-  					<script>
-    					const canvasExample = document.getElementById('canvas-example');
-    					const ctxExample = canvasExample.getContext('2d');
-    					ctxExample.fillStyle = "green";
-    					ctxExample.fillRect(100,100,300,300);
-  					</script>
+  				<script>
+    				const canvasExample = document.getElementById('canvas-example');
+    				const ctxExample = canvasExample.getContext('2d');
+    				ctxExample.fillStyle = "green";
+    				ctxExample.fillRect(100,100,300,300);
+  				</script>
 					<aside class="notes">
-							This is an example of what some Canvas code looks like where the square is drawn by <b>context.fillRect()</b> function.
-							It's important to understand that <strong>Canvas is for drawing pixels</strong>.
-							It has no shapes or vectors. There are no objects to attach event handlers to.
+						This is an example of what some Canvas code looks like where the square is drawn by <b>context.fillRect()</b> function.
+						It's important to understand that <strong>Canvas is for drawing pixels</strong>.
+						It has no shapes or vectors. There are no objects to attach event handlers to.
 					</aside>
 				</section>
 
@@ -62,30 +63,30 @@
 
 					<h3 class="fragment fade-up">+</h3>
 					<ol style="display: block; color: green">
-					    <li class="fragment fade-in-then-semi-out">Suited for games, charts, graphs, diagrams</li>
-					    <li class="fragment fade-in-then-semi-out">More control over the drawing</li>
-					    <li class="fragment fade-in-then-semi-out">Less memory consumption</li>
+					  <li class="fragment fade-in-then-semi-out">Suited for games, charts, graphs, diagrams</li>
+					  <li class="fragment fade-in-then-semi-out">More control over the drawing</li>
+					  <li class="fragment fade-in-then-semi-out">Less memory consumption</li>
 					</ol>
 
 					<h3 class="fragment fade-up">-</h3>
 					<ol style="display: block; color: red">
-					    <li class="fragment fade-in-then-semi-out">Canvas images are not flexible</li>
-					    <li class="fragment fade-in-then-semi-out">No support for event handlers and css styling</li>
-					    <li class="fragment fade-in-then-semi-out">Need to write more code</li>
-					    <li class="fragment fade-in-then-semi-out">Slow when drawing large objects</li>
+					  <li class="fragment fade-in-then-semi-out">Canvas images are not flexible</li>
+					  <li class="fragment fade-in-then-semi-out">No support for event handlers and css styling</li>
+					  <li class="fragment fade-in-then-semi-out">Need to write more code</li>
+					  <li class="fragment fade-in-then-semi-out">Slow when drawing large objects</li>
 					</ol>
 
 					<aside class="notes">
-							Let's talk about pros and cons of Canvas.<br>
-							Canvas pros are:<br>
-							1. It's a great choice for charts, graphs, dynamic diagrams, and video games;<br>
-							2. Detailed control over when and how pixels are rendered;<br>
-							3. Animation and rendering accelerate because it uses less memory.;<br>
-							Canvas cons are:<br>
-							1. Does not automatically adjust to display pixel ratio, resulting in blurry text;<br>
-							2. There is no support for event handlers and css styling (only &lt;canvas&gt; element);<br>
-							3. Increases code complexity for animations, basic configurations, etc.;<br>
-							4. Slow when drawing large objects or when managing a large canvas.
+						Let's talk about pros and cons of Canvas.<br>
+						Canvas pros are:<br>
+						1. It's a great choice for charts, graphs, dynamic diagrams, and video games;<br>
+						2. Detailed control over when and how pixels are rendered;<br>
+						3. Animation and rendering accelerate because it uses less memory.;<br>
+						Canvas cons are:<br>
+						1. Does not automatically adjust to display pixel ratio, resulting in blurry text;<br>
+						2. There is no support for event handlers and css styling (only &lt;canvas&gt; element);<br>
+						3. Increases code complexity for animations, basic configurations, etc.;<br>
+						4. Slow when drawing large objects or when managing a large canvas.
 					</aside>
 				</section>
 
@@ -229,6 +230,342 @@
 						To address this offset your x coordinate by 0.5, that will give you a line that goes from 5.0 to 6.0 or use an even line width.
 					</aside>
 				</section>
+
+				<section>
+					<section>
+						<h2>Drawing on Canvas</h2>
+					</section>
+
+					<section class="drawing-rectangles">
+						<h2>Drawing rectangles</h2>
+						<canvas id="drawing-rectangles" width="180" height="180"></canvas>
+						<script>
+							function drawRectangles() {
+								const canvasRect = document.getElementById('drawing-rectangles');
+							  if (canvasRect.getContext) {
+								  const ctxRect = canvasRect.getContext('2d');
+								  ctxRect.fillStyle = "green";
+								  ctxRect.strokeStyle = "red";
+								  ctxRect.lineWidth = 5;  //specifies line width in px
+								  ctxRect.fillRect(10, 10, 160, 160);
+								  ctxRect.clearRect(35, 35, 110, 110);
+								  ctxRect.strokeRect(60, 60, 60, 60);
+							  }
+							}
+							drawRectangles();
+						</script>
+
+						<pre><code class="javascript" data-trim data-noescape data-line-numbers="6-15">
+							function drawRectangles() {
+								const canvasRect = document.getElementById('drawing-rectangles');
+								if (canvasRect.getContext) {
+									const ctxRect = canvasRect.getContext('2d');
+
+									ctxRect.fillStyle = "green";
+									ctxRect.strokeStyle = "red";
+									ctxRect.lineWidth = 5;  //specifies line width in px
+
+									ctxRect.fillRect(10, 10, 160, 160);
+									ctxRect.clearRect(35, 35, 110, 110);
+									ctxRect.strokeRect(60, 60, 60, 60);
+								}
+							}
+							drawRectangles();
+						</code></pre>
+
+						<aside class="notes">
+							Canvas only supports one primitive shape: rectangles.<br>
+							There are three functions that draw rectangles on the canvas:<br>
+							1) fillRect(x, y, width, height) - Draws a filled rectangle;<br>
+							2) strokeRect(x, y, width, height) - Draws a rectangular outline;<br>
+							3) clearRect(x, y, width, height) - Clears the specified rectangular area, making it fully transparent.<br>
+							Parameters are the same: x and y specify the position on the canvas, width and height provide the rectangle's size.
+						</aside>
+					</section>
+
+					<section class="drawing-paths">
+						<h2>Drawing paths</h2>
+						<div class="paths-wrapper">
+							<div class="left-path-wrapper path-wrapper">
+								<canvas id="drawing-paths" width="250" height="120"></canvas>
+								<script>
+									function drawPaths() {
+										const canvasPath = document.getElementById('drawing-paths');
+										if (canvasPath.getContext) {
+											const ctxPath = canvasPath.getContext('2d');
+
+											ctxPath.fillStyle = 'red';
+											ctxPath.beginPath();
+											ctxPath.moveTo(10,20);
+											ctxPath.bezierCurveTo(50,80,159,-30,200,20);
+											ctxPath.lineTo(200,80);
+											ctxPath.lineTo(10,80);
+											ctxPath.fill();
+											ctxPath.lineWidth = 4;
+											ctxPath.strokeStyle = '#DDDDDD';
+											ctxPath.stroke();
+										}
+									}
+									drawPaths();
+								</script>
+
+								<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-14">
+									function drawPaths2() {
+									...
+									ctxPath2.fillStyle = 'red';
+									ctxPath2.beginPath();
+									ctxPath2.moveTo(10,20);
+									ctxPath2.bezierCurveTo(50,80,159,-30,200,20);
+									ctxPath2.lineTo(200,80);
+									ctxPath2.lineTo(10,80);
+									<mark>ctxPath2.fill();</mark>
+									ctxPath2.lineWidth = 4;
+									ctxPath2.strokeStyle = '#DDDDDD';
+									<mark>ctxPath2.stroke();</mark>
+									}
+									drawPaths2();
+								</code></pre>
+							</div>
+
+							<div class="right-path-wrapper path-wrapper">
+								<canvas id="drawing-paths2" width="250" height="120"></canvas>
+								<script>
+									function drawPaths2() {
+										const canvasPath2 = document.getElementById('drawing-paths2');
+										if (canvasPath2.getContext) {
+											const ctxPath2 = canvasPath2.getContext('2d');
+
+											ctxPath2.fillStyle = 'red';
+											ctxPath2.beginPath();
+											ctxPath2.moveTo(10,20);
+											ctxPath2.bezierCurveTo(50,80,159,-30,200,20);
+											ctxPath2.lineTo(200,80);
+											ctxPath2.lineTo(10,80);
+											ctxPath2.closePath();
+											ctxPath2.fill();
+											ctxPath2.lineWidth = 4;
+											ctxPath2.strokeStyle = '#DDDDDD';
+											ctxPath2.stroke();
+										}
+									}
+									drawPaths2();
+								</script>
+
+								<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-15">
+									function drawPaths2() {
+									...
+									ctxPath2.fillStyle = 'red';
+									ctxPath2.beginPath();
+									ctxPath2.moveTo(10,20);
+									ctxPath2.bezierCurveTo(50,80,159,-30,200,20);
+									ctxPath2.lineTo(200,80);
+									ctxPath2.lineTo(10,80);
+									<mark>ctxPath2.closePath();</mark>
+									<mark>ctxPath2.fill();</mark>
+									ctxPath2.lineWidth = 4;
+									ctxPath2.strokeStyle = '#DDDDDD';
+									<mark>ctxPath2.stroke();</mark>
+									}
+									drawPaths2();
+								</code></pre>
+							</div>
+						</div>
+
+						<aside class="notes">
+							The only other primitive shapes are paths, which are lists of points, connected by segments of lines.<br>
+							Steps to create shapes with paths are:<br>
+							1. Create a path using beginPath() function;<br>
+							2. Use different methods to set paths for objects;<br>
+							3. Close path using closePath() function, which adds a straight line to the start of the path;<br>
+							4. Use fill() function to fill the path's content area and stroke() to stroke its outline.<br>
+							fill() function closes shapes automatically (no need to call closePath()), but stroke() doesn't.
+						</aside>
+					</section>
+
+					<section class="drawing-text">
+						<h2>Drawing text</h2>
+						<canvas id="drawing-text" width="400" height="180"></canvas>
+						<script>
+							function drawText() {
+								const canvasText = document.getElementById('drawing-text');
+								if (canvasText.getContext) {
+								  const ctxText = canvasText.getContext('2d');
+
+									ctxText.fillStyle = "red";
+								  ctxText.font = "bold 40px sans-serif";
+								  ctxText.textBaseline = 'top';
+								  ctxText.fillText('Canvas', 10, 60);
+
+									ctxText.strokeStyle = "green";
+								  ctxText.font = "italic 55px Arial";
+								  ctxText.textBaseline = 'bottom';
+								  ctxText.strokeText('Canvas', 210, 60);
+								}
+							}
+							drawText();
+						</script>
+
+						<pre><code class="javascript" data-trim data-noescape data-line-numbers="3-6, 8-11">
+							function drawText() {
+							...
+							ctxText.fillStyle = "red";
+							ctxText.font = "bold 40px sans-serif"; //default - "10px sans-serif"
+							ctxText.textBaseline = 'top'; //default - "alphabetic"
+							ctxText.fillText('Canvas', 10, 60); //fills text at the (x,y) position
+
+							ctxText.strokeStyle = "green";
+							ctxText.font = "italic 55px Arial";
+							ctxText.textBaseline = 'bottom';
+							ctxText.strokeText('Canvas', 210, 60); //strokes text at the (x,y) position
+							}
+							drawText();
+						</code></pre>
+
+						<aside class="notes">
+							The canvas rendering context provides two methods to render text with optional parameter - max width:<br>
+							1. fillText(text, x, y [, maxWidth]);<br>
+							2. strokeText(text, x, y [, maxWidth]).<br>
+							The text is filled using the current fillStyle or strokeStyle.<br>
+							Among text styling properties you can find:<br>
+							1. font = value (syntax the same as in CSS);<br>
+							2. textAlign = value (possibilities: start, end, left, right or center);<br>
+							3. textBaseline = value (possibilities: top, hanging, middle, alphabetic, ideographic, bottom);<br>
+							4. direction = value (possibilities: ltr, rtl, inherit).
+						</aside>
+					</section>
+
+					<section class="drawing-image">
+						<h2>Drawing images</h2>
+						<canvas id="drawing-image" width="520" height="200"></canvas>
+						<script>
+							function drawImage() {
+								const canvasImg = document.getElementById('drawing-image');
+								if (canvasImg.getContext) {
+									const ctxImg = canvasImg.getContext('2d');
+									const img = new Image();
+									img.onload = function() {
+										ctxImg.drawImage(img, 20,20,150,150); //normal drawing
+
+										ctxImg.drawImage(img, //draw stretched
+																	0,0,150,150, //source (x,y,w,h)
+																	210,20,180,180//destination (x,y,w,h)
+										);
+
+										ctxImg.drawImage(img, //draw a slice
+																	25,30,70,120, //source coords (x,y,w,h)
+																	430,20,70,120//destination coords (x,y,w,h)
+										);
+									};
+									img.src = 'images/meme-smile.jpg';
+								}
+							}
+							drawImage();
+						</script>
+
+						<pre><code class="javascript" data-trim data-noescape data-line-numbers="3-15">
+							function drawImage() {
+								...
+								const img = new Image();
+								img.onload = function() {
+									ctxImg.drawImage(img, 20,20,150,150); //normal drawing (original size 150*150)
+
+									ctxImg.drawImage(img, //draw stretched
+											0,0,150,150, //source (x,y,w,h)
+											210,20,180,180//destination (x,y,w,h)
+									);
+
+									ctxImg.drawImage(img, //draw a slice
+											25,30,70,120, //source coords (x,y,w,h)
+											430,20,70,120//destination coords (x,y,w,h)
+									);
+								};
+								img.src = 'images/meme-smile.jpg';
+							}
+							drawImage();
+						</code></pre>
+
+						<aside class="notes">
+								Canvas can draw images with the drawImage() function.<br>
+								There are several forms of drawImage().<br>
+								You can draw the image directly to the screen at normal scale, or stretch and slice it how you like.<br>
+								Slicing and stretching images is much faster than other ways kinds of scaling in games.
+						</aside>
+					</section>
+
+					<section class="drawing-animation">
+						<h2>Drawing animation</h2>
+						<canvas id="drawing-animation"></canvas>
+
+						<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-6">
+							let canvas;
+							let ctx;
+							const sWidth = 184;
+							const sHeight = 325;
+							let nStartX = 0;
+							let canvasInterval;
+						</code></pre>
+
+						<aside class="notes">
+							And last, but not the least, is drawing animation on canvas.<br>
+							You see the walking sprite and now I'll explain how to make him walking.<br>
+							Firstly, I've prepared a sprite sheet png picture with different states of the sprite,<br>
+							and canvas element and link to sprite.js in index.html.<br>
+							let canvas;  //HTML canvas element<br>
+							let ctx; //variable 2d context for drawing<br>
+							const sWidth = 184; //width of the sprite sheet divided by the number of sprites<br>
+							const sHeight = 325; // height of the sprite sheet<br>
+							let nStartX = 0; //x axis position of slice starting<br>
+							let canvasInterval;  //variable that stores setInterval method
+						</aside>
+					</section>
+
+					<section class="drawing-animation2">
+						<h2>Drawing animation</h2>
+						<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-25">
+							const spriteImg = new Image();
+							window.onload = function() {
+								canvas = document.getElementById('drawing-animation');
+								canvas.width = sWidth;
+								canvas.height = sHeight;
+								ctx = canvas.getContext('2d');
+								spriteImg.src = '../images/sprite.png';
+								spriteImg.onload = function() {
+									drawSprite();
+									canvasInterval = setInterval( function() {
+										nStartX += sWidth;
+										if (nStartX >= 1472) {
+											nStartX = 0;
+										}
+										drawSprite();
+									}, 100);
+								}
+							}
+
+							function drawSprite() {
+								ctx.clearRect(0, 0, sWidth, sHeight);
+								ctx.beginPath();
+								ctx.moveTo(0,0);
+								ctx.drawImage(spriteImg, nStartX, 0, sWidth, sHeight, 0, 0, sWidth, sHeight);
+								ctx.closePath();
+							}
+						</code></pre>
+
+						<aside class="notes">
+							When the window is loaded we get canvas element, assign to canvas variable and set its width and height properties.<br>
+							After that create context for drawing, set sprite image<br>
+							and after the sprite sheet is loaded one of the sprite's states is drawn by drawSprite()function.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h2>Thanks for attention</h2>
+					<aside class="notes">
+						In coclusion, I'd like to add that canvas element can be used to draw graphs, combine photos, or create animations.<br>
+						The examples provided in presentation don't cover all ways of using canvas,<br>
+						but should give you some clear ideas what you can do with it.
+					</aside>
+				</section>
 			</div>
 		</div>
 
@@ -247,8 +584,6 @@
 				],
 				slideNumber: true,
 				slideNumber: 'c/t',
-				autoPlayMedia: true,
-				defaultTiming: 2,
 			});
 		</script>
 	</body>
