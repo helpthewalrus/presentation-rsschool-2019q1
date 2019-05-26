@@ -63,17 +63,17 @@
 
 					<h3 class="fragment fade-up">+</h3>
 					<ol style="display: block; color: green">
-					  <li class="fragment fade-in-then-semi-out">Suited for games, charts, graphs, diagrams</li>
-					  <li class="fragment fade-in-then-semi-out">More control over the drawing</li>
-					  <li class="fragment fade-in-then-semi-out">Less memory consumption</li>
+					  <li class="fragment fade-up">Suited for games, charts, graphs, diagrams</li>
+					  <li class="fragment fade-up">More control over the drawing</li>
+					  <li class="fragment fade-up">Less memory consumption</li>
 					</ol>
 
 					<h3 class="fragment fade-up">-</h3>
 					<ol style="display: block; color: red">
-					  <li class="fragment fade-in-then-semi-out">Canvas images are not flexible</li>
-					  <li class="fragment fade-in-then-semi-out">No support for event handlers and css styling</li>
-					  <li class="fragment fade-in-then-semi-out">Need to write more code</li>
-					  <li class="fragment fade-in-then-semi-out">Slow when drawing large objects</li>
+					  <li class="fragment fade-up">Canvas images are not flexible</li>
+					  <li class="fragment fade-up">No support for event handlers and css styling</li>
+					  <li class="fragment fade-up">Need to write more code</li>
+					  <li class="fragment fade-up">Slow when drawing large objects</li>
 					</ol>
 
 					<aside class="notes">
@@ -494,6 +494,21 @@
 
 					<section class="drawing-animation">
 						<h2>Drawing animation</h2>
+						<figure>
+								<img src="./images/sprite.png" alt="sprite png" style="width: 800px"/>
+								<figcaption>Sprite sheet "sprite.png"</figcaption>
+						</figure>
+
+						<aside class="notes">
+							And last, but not the least, is drawing animation on canvas.<br>
+							On the next slide you will see the walking sprite and now I'll explain how to make him walking.<br>
+							Firstly, I've prepared a sprite sheet png picture with different states of the sprite,<br>
+							add canvas element and link to sprite.js in index.html.<br>
+						</aside>
+					</section>
+
+					<section class="drawing-animation">
+						<h2>Drawing animation</h2>
 						<canvas id="drawing-animation"></canvas>
 
 						<pre><code class="javascript" data-trim data-noescape data-line-numbers="1-6">
@@ -506,10 +521,6 @@
 						</code></pre>
 
 						<aside class="notes">
-							And last, but not the least, is drawing animation on canvas.<br>
-							You see the walking sprite and now I'll explain how to make him walking.<br>
-							Firstly, I've prepared a sprite sheet png picture with different states of the sprite,<br>
-							add canvas element and link to sprite.js in index.html.<br>
 							let canvas;  //HTML canvas element<br>
 							let ctx; //variable 2d context for drawing<br>
 							const sWidth = 184; //width of the sprite sheet divided by the number of sprites<br>
