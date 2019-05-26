@@ -81,7 +81,7 @@
 						Canvas pros are:<br>
 						1. It's a great choice for charts, graphs, dynamic diagrams, and video games;<br>
 						2. Detailed control over when and how pixels are rendered;<br>
-						3. Animation and rendering accelerate because it uses less memory.;<br>
+						3. Animation and rendering accelerate because it uses less memory.<br>
 						Canvas cons are:<br>
 						1. Does not automatically adjust to display pixel ratio, resulting in blurry text;<br>
 						2. There is no support for event handlers and css styling (only &lt;canvas&gt; element);<br>
@@ -132,7 +132,7 @@
 					</table>
 
 					<aside class="notes">
-						Before diving into workking with Canvas, let's talk about where you can use it.<br>
+						Before diving into working with Canvas, let's talk about where you can use it.<br>
 						Canvas is now a stable API and most modern browsers support it to some extent.<br>
 						Even Internet Explorer supports it starting with IE 9.<br>
 						On the mobile side most smartphone platforms support it because most of them are based on WebKit.
@@ -227,7 +227,7 @@
 						Canvas has the origin in the upper left corner with the y axis going down, but you can change origin with transforms.<br>
 						Canvas spec defines coordinates at the upper left corner of a pixel,
 						which means that a one pixel wide vertical line starting at 5,0 will actually span half of the adjacent pixels (4.5 to 5.5).<br>
-						To address this offset your x coordinate by 0.5, that will give you a line that goes from 5.0 to 6.0 or use an even line width.
+						To address this, offset your x coordinate by 0.5, that will give you a line that goes from 5.0 to 6.0 or use an even line width.
 					</aside>
 				</section>
 
@@ -378,7 +378,7 @@
 							2. Use different methods to set paths for objects;<br>
 							3. Close path using closePath() function, which adds a straight line to the start of the path;<br>
 							4. Use fill() function to fill the path's content area and stroke() to stroke its outline.<br>
-							fill() function closes shapes automatically (no need to call closePath()), but stroke() doesn't.
+							Function fill() closes shapes automatically (no need to call closePath()), but stroke() doesn't.
 						</aside>
 					</section>
 
@@ -488,7 +488,7 @@
 								Canvas can draw images with the drawImage() function.<br>
 								There are several forms of drawImage().<br>
 								You can draw the image directly to the screen at normal scale, or stretch and slice it how you like.<br>
-								Slicing and stretching images is much faster than other ways kinds of scaling in games.
+								Slicing and stretching images is much faster than other kinds of scaling in games.
 						</aside>
 					</section>
 
@@ -509,7 +509,7 @@
 							And last, but not the least, is drawing animation on canvas.<br>
 							You see the walking sprite and now I'll explain how to make him walking.<br>
 							Firstly, I've prepared a sprite sheet png picture with different states of the sprite,<br>
-							and canvas element and link to sprite.js in index.html.<br>
+							add canvas element and link to sprite.js in index.html.<br>
 							let canvas;  //HTML canvas element<br>
 							let ctx; //variable 2d context for drawing<br>
 							const sWidth = 184; //width of the sprite sheet divided by the number of sprites<br>
@@ -552,7 +552,7 @@
 
 						<aside class="notes">
 							When the window is loaded we get canvas element, assign to canvas variable and set its width and height properties.<br>
-							After that create context for drawing, set sprite image<br>
+							After that create context for drawing, set sprite image
 							and after the sprite sheet is loaded one of the sprite's states is drawn by drawSprite()function.
 						</aside>
 					</section>
@@ -561,7 +561,7 @@
 				<section>
 					<h2>Thanks for attention</h2>
 					<aside class="notes">
-						In coclusion, I'd like to add that canvas element can be used to draw graphs, combine photos, or create animations.<br>
+						In conclusion, I'd like to add that canvas element can be used to draw graphs, combine photos, or create animations.<br>
 						The examples provided in presentation don't cover all ways of using canvas,<br>
 						but should give you some clear ideas what you can do with it.
 					</aside>
