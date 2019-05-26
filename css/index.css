@@ -1,0 +1,64 @@
+.compatibility-table .browser-cell {
+    font-size: 0.7em;
+    text-align: center;
+    font-weight: normal;
+}
+
+.desktop-compatibility::before {
+    display: block;
+    text-align: center;
+    content: url('../images/desktop-monitor.svg');
+}
+
+.mobile-compatibility::before {
+    display: block;
+    text-align: center;
+    content: url('../images/smartphone-call.svg');
+}
+
+
+.chrome-cell::after,
+.edge-cell::after,
+.firefox-cell::after,
+.explorer-cell::after,
+.opera-cell::after,
+.safari-cell::after {
+    display: block;
+}
+
+.chrome-cell::after {
+    content: url('../images/chrome.svg');
+}
+
+.edge-cell::after {
+    content: url('../images/edge.svg');
+}
+
+.firefox-cell::after {
+    content: url('../images/mozilla-firefox.svg');
+}
+
+.explorer-cell::after {
+    content: url('../images/internet-explorer.svg');
+}
+
+.opera-cell::after {
+    content: url('../images/opera.svg');
+}
+
+.safari-cell::after {
+    content: url('../images/safari.svg');
+}
+
+.reveal .slides .fallback-content,
+.reveal .slides .drawing-rectangles {
+    width: 1090px;
+}
+
+.reveal .slides .get-context {
+    margin-bottom: 85px;
+}
+
+.reveal .drawing-rectangles pre {
+    font-size: 0.45em;
+}
